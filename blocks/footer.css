@@ -1,3 +1,8 @@
+.footer {
+  width: 880px;
+  margin: 0 auto;
+}
+
 .footer__copyright {
   font-weight: normal;
   width: 318px;
