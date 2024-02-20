@@ -23,6 +23,8 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  font-family: "Inter";
+  font-weight: 900;
 }
 
 .card__image {
