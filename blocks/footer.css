@@ -1,11 +1,12 @@
 .footer {
-  width: 880px;
+  max-width: 880px;
   margin: 0 auto;
+  padding: 35px 0 60px;
 }
 
 .footer__copyright {
   font-weight: normal;
-  width: 318px;
   height: 18px;
   font-style: normal;
+  font-family: "Inter", Arial, sans-serif;
 }

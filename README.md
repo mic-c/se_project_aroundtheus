@@ -1,6 +1,6 @@
-# Triple Peaks Coffee Shop
+# Around The U.S.
 
-This is the second project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the design brief.
+This is the thrid project of the Software Engineering program at TripleTen. It was created using HTML,CSS and Figma based on the design brief.
 
 ## Project features
 
@@ -10,7 +10,10 @@ This is the second project of the Software Engineering program at TripleTen. It 
 - Flat BEM file structure
 - A custom form
 - CSS animation and transform
+- Figma
 
 ## Plan on improving the project
+
+https://vimeo.com/916476252/000611eb00?share=copy
 
 Add your ideas here :)

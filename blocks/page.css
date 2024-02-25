@@ -1,6 +1,7 @@
 .page {
   background-color: #000;
   color: #fff;
+  font-family: "Inter", Arial, sans-serif;
 }
 
 .page__section {
@@ -15,27 +16,11 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 0 20px;
 }
 
 @media screen and (max-width: 768px) {
   .page__section {
     flex-direction: column;
-  }
-
-  .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .profile__description {
-    width: 100%;
-    text-align: center;
-  }
-
-  .profile__add-button {
-    margin: 0;
-    width: 100%;
   }
 }
