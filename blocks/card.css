@@ -43,7 +43,7 @@
   border: none;
 }
 
-.card__button:hover {
+.card__like-button:hover {
   opacity: 0.5;
   cursor: pointer;
 }
