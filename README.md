@@ -12,6 +12,9 @@ This is the thrid project of the Software Engineering program at TripleTen. It w
 - CSS animation and transform
 - Figma
 
+delopy project from github.
+https://mic-c.github.io/se_project_aroundtheus/
+
 ## Plan on improving the project
 
 https://vimeo.com/916476252/000611eb00?share=copy
