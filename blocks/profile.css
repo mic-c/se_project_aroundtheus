@@ -32,6 +32,10 @@
   margin-left: 18px;
 }
 
+.profile__edit-button:hover {
+  opacity: 0.5;
+}
+
 .profile__description {
   font-size: 18px;
   line-height: 22px;
