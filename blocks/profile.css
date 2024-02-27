@@ -76,7 +76,7 @@
 
 @media screen and (max-width: 768px) {
   .profile__info {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
@@ -104,5 +104,15 @@
   .profile__title {
     font-size: 22px;
     max-width: 222px;
+  }
+}
+@media screen and (max-width: 578px) {
+  .profile__info {
+    display: flex;
+  }
+
+  .profile__image {
+    justify-content: center;
+    padding-bottom: 30px;
   }
 }
