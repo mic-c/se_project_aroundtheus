@@ -17,10 +17,13 @@
 }
 @media screen and (max-width: 578px) {
   .footer {
-    margin-top: 48px;
+    padding-top: 48px;
+    padding-bottom: 36px;
   }
 
   .footer__copyright {
     font-size: 14px;
+    padding-left: 19px;
+    padding-right: 19px;
   }
 }

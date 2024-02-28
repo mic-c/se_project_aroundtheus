@@ -80,6 +80,7 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+    padding-bottom: 36px;
   }
 
   .profile__description {
@@ -88,10 +89,6 @@
     font-size: 14px;
     line-height: 16.94px;
     font-weight: 400;
-  }
-
-  .profile__info {
-    padding-bottom: 36px;
   }
 
   .profile__add-button {
@@ -113,6 +110,17 @@
 
   .profile__image {
     justify-content: center;
-    padding-bottom: 30px;
+    margin: 0;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    background-size: 8px 8px;
+    margin-right: 0;
+  }
+
+  .profile {
+    padding-bottom: 36px;
   }
 }
