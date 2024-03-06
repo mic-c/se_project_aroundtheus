@@ -1,0 +1,45 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: 999;
+  padding: 0 19px;
+  display: none;
+  color: #000;
+  font-family: Inter;
+}
+
+.modal__opened {
+  display: flex;
+}
+
+.modal__container {
+  background-color: #fff;
+  margin: auto;
+  padding: 36px;
+  position: relative;
+  border-radius: 10px;
+  width: 430px;
+  height: 330px;
+}
+
+.modal__close {
+  background-image: url("../images/Close\ Icon.svg");
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  top: -45px;
+  right: -45px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__heading {
+  margin: 0 0 20px;
+}
