@@ -10,7 +10,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
   transition: all 0.3s ease;
-  color: #000;
 }
 
 .modal__opened {
