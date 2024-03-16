@@ -46,7 +46,7 @@
 }
 
 .modal__close:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .modal__title {
@@ -74,7 +74,7 @@
 }
 
 .modal__button:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .modal__input {
@@ -82,8 +82,48 @@
   height: 27.26px;
   color: #000;
   box-sizing: border-box;
+  border: none;
 }
 
 .modal__input:last-of-type {
   margin-top: 57.08px;
+}
+
+@media screen and (max-width: 650px) {
+  .modal__container {
+    width: 282px;
+    height: 322px;
+    margin-top: 123px;
+    margin-bottom: 123px;
+    border-radius: 10px;
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+
+  .modal__input {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .modal__close {
+    width: 20px;
+    height: 20px;
+    padding-left: 41px;
+    padding-right: 41px;
+    background-image: url("../images/Close\ Icon.svg");
+  }
+  .modal__title {
+    width: 238px;
+    padding-left: 22px;
+    margin-top: 25px;
+  }
+  .modal__input:last-of-type {
+    margin-top: 30px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .modal__button {
+    padding-left: 22px;
+    padding-right: 22px;
+    margin-top: 45px;
+  }
 }
