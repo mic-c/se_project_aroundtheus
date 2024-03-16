@@ -41,7 +41,7 @@ const cardTemplate = document
   .content.querySelector(".card");
 
 //*   Functions    *//
-function closePopop() {
+function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
 
@@ -50,17 +50,17 @@ function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopop();
+  closePopup();
 }
 
 //*    Event Listeners    *//
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
-profileEditCloseButton.addEventListener("click", closePopop);
+profileEditCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 const cardsWrap = document.querySelector(".cards__list");
