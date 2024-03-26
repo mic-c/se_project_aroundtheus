@@ -39,7 +39,7 @@
         <p class="footer__copyright">&copy;2022 Around The U.S.</p>
       </footer>
     </div>
-
+    <!--Edit modal-->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -64,6 +64,30 @@
       </div>
     </div>
 
+    <!--Add card modal-->
+    <div class="modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <h3 class="modal__title">New place</h3>
+        <form class="modal__form" id="add-card-form">
+          <input
+            type="text"
+            class="modal__input"
+            name="title"
+            id="profile-title-input"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            class="modal__input"
+            name="url"
+            id="profile-description-input"
+            placeholder="image URL"
+          />
+          <button type="submit" class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />

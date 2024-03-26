@@ -83,6 +83,7 @@
   color: #000;
   box-sizing: border-box;
   border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .modal__input:last-of-type {
@@ -94,15 +95,16 @@
     width: 282px;
     height: 322px;
     margin-top: 123px;
-    margin-bottom: 123px;
     border-radius: 10px;
     padding-left: 19px;
     padding-right: 19px;
+    box-sizing: border-box;
   }
 
   .modal__input {
     padding-left: 22px;
     padding-right: 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
   .modal__close {
     width: 20px;

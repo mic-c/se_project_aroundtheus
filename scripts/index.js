@@ -64,6 +64,8 @@ profileEditCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 const cardsWrap = document.querySelector(".cards__list");
+
+//*  Task 1. Rendering Cards   *//
 initialCards.forEach((cardData) => cardsWrap.prepend(getCardElement(cardData)));
 
 function getCardElement(cardData) {
