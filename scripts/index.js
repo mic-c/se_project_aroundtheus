@@ -28,21 +28,28 @@ const initialCards = [
 //*    Elements    *//
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
 const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
+const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
+const addNewCardButton = document.querySelector(".profile__add-button");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
-
+const likeButtons = document.querySelectorAll(".card__like-button");
 //*   Functions    *//
-function closePopup() {
-  profileEditModal.classList.remove("modal_opened");
+function openPopup(modal) {
+  modal.classList.add("modal_opened");
+}
+
+function closePopup(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 //*   Event Handlers   *//
@@ -54,13 +61,12 @@ function handleProfileFormSubmit(event) {
 }
 
 //*    Event Listeners    *//
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
-});
-
-profileEditCloseButton.addEventListener("click", closePopup);
+profileEditButton.addEventListener("click", () => openPopup(profileEditModal));
+profileTitleInput.value = profileTitle.textContent;
+profileDescriptionInput.value = profileDescription.textContent;
+profileEditCloseButton.addEventListener("click", () =>
+  closePopup(profileEditModal)
+);
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 const cardsWrap = document.querySelector(".cards__list");
@@ -78,3 +84,9 @@ function getCardElement(cardData) {
   cardTitle.textContent = cardData.name;
   return cardElement;
 }
+
+//*  add new card button  *//
+addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
+addCardModalCloseButton.addEventListener("click", () =>
+  closePopup(addCardModal)
+);
