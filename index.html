@@ -81,15 +81,27 @@
             type="text"
             class="modal__input"
             name="url"
-            id="profile-description-input"
+            id="profile-url-input"
             placeholder="image URL"
           />
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
     </div>
+    <div class="modal" id="modal__image-preview">
+      <div class="modal__container modal__container-preview">
+        <button class="modal__close" id="image-preview-close-button"></button>
+        <img src="" alt="" class="modal__image-preview" id="preview-image" />
+        <p class="modal__image_name"></p>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
+        <button
+          class="card__trash-button"
+          type="button"
+          aria-label="remove card"
+        ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
