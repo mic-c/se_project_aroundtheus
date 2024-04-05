@@ -48,7 +48,6 @@ const cardTemplate = document
   .content.querySelector(".card");
 const imagePreviewModal = document.querySelector("#modal__image-preview");
 const cardListEl = document.querySelector(".cards__list");
-
 function handleCloseClick() {
   closePopup();
 }
@@ -88,9 +87,11 @@ function handleAddCardFormSubmit(event) {
 }
 
 //*    Event Listeners    *//
-profileEditButton.addEventListener("click", () => openPopup(profileEditModal));
-profileTitleInput.value = profileTitle.textContent;
-profileDescriptionInput.value = profileDescription.textContent;
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  openPopup(profileEditModal);
+});
 profileEditCloseButton.addEventListener("click", () =>
   closePopup(profileEditModal)
 );
@@ -115,6 +116,11 @@ function getCardElement(cardData) {
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
+  });
+
+  const deleteButton = cardElement.querySelector(".card__trash-button");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   cardImage.src = cardData.link;
@@ -150,10 +156,7 @@ function handleCardImageClick(event) {
 
 //*   Image Preview Listeners   *//
 cardListEl.addEventListener("click", handleCardImageClick);
-// imagePreviewCloseButton.addEventListener("click", () =>
-//   closeModal(imagePreviewModal)
-// );
-// const deleteButton = cardImage.querySelector(".card__delete-button");
-// deleteButton.addEventListener("click", () => {
-//   cardImage.remove();
-// });
+
+//imagePreviewCloseButton.addEventListener("click", () =>
+// closeModal(imagePreviewModal)
+//);
