@@ -100,7 +100,7 @@ const cardsWrap = document.querySelector(".cards__list");
 
 //*  Form Listeners    *//
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
-profileFormElement.addEventListener("submit", handleAddCardFormSubmit);
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 //*  Form data   *//
 const nameInput = profileFormElement.querySelector(".profile__title");
@@ -139,8 +139,9 @@ addNewCardButton.addEventListener("click", () => openPopup(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
-const likeButtons = document.querySelectorAll(".card__like-button");
-likeButtons.forEach((likeButtons) => {});
+
+//const likeButtons = document.querySelectorAll(".card__like-button");
+//likeButtons.forEach((likeButtons) => {});
 
 function handleCardImageClick(event) {
   if (event.target.classList.contains("card__image")) {
