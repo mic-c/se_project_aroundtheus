@@ -123,6 +123,8 @@ function getCardElement(cardData) {
     cardElement.remove();
   });
 
+  cardImage.addEventListener("click", handleCardImageClick);
+
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
   cardTitle.textContent = cardData.name;
@@ -140,24 +142,17 @@ addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
 
-//const likeButtons = document.querySelectorAll(".card__like-button");
-//likeButtons.forEach((likeButtons) => {});
-
 function handleCardImageClick(event) {
   if (event.target.classList.contains("card__image")) {
     const cardImage = event.target;
     const cardTitle = cardImage.closest(".card").querySelector(".card__title");
 
+    //*   Image Preview Listeners   *//
     imagePreviewModal.querySelector("#preview-image").src = cardImage.src;
+    imagePreviewModal.querySelector("#preview-image").alt =
+      cardTitle.textContent;
     imagePreviewModal.querySelector(".modal__image_title").textContent =
       cardImage.textContent;
     openPopup(imagePreviewModal);
   }
 }
-
-//*   Image Preview Listeners   *//
-cardListEl.addEventListener("click", handleCardImageClick);
-
-//imagePreviewCloseButton.addEventListener("click", () =>
-// closeModal(imagePreviewModal)
-//);
