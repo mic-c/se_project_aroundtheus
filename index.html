@@ -51,14 +51,25 @@
             name="title"
             id="profile-title-input"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
             type="text"
             class="modal__input"
             name="description"
             id="profile-description-input"
             placeholder="Description"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span
+            class="modal__error"
+            id="profile-description-input-error"
+          ></span>
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
@@ -84,7 +95,14 @@
             id="profile-url-input"
             placeholder="image URL"
           />
-          <button type="submit" class="modal__button">Save</button>
+          <button
+            type="submit"
+            disabled
+            class="modal__button_disabled"
+            disabled
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -109,6 +127,8 @@
         </div>
       </li>
     </template>
+    <!--index.js-->
     <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
