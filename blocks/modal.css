@@ -114,6 +114,33 @@
   margin: 10px 0 0;
 }
 
+.modal__error {
+  color: #ff0000;
+  opacity: 0;
+  width: 100%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  display: block;
+  margin-top: 5px;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.modal__error_visible {
+  opacity: 1;
+}
+
+.modal__button_disabled {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgb(252, 250, 250);
+  pointer-events: none;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.2);
+}
+
 @media screen and (max-width: 650px) {
   .modal__container {
     width: 282px;
