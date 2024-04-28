@@ -1,5 +1,12 @@
-// enabling validation by calling enableValidation()
-// pass all the settings on call
+function disabledButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+function enableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
+}
 
 function showInputError(
   formElementElement,
@@ -29,24 +36,14 @@ function hideInputError(
 
 function checkInputValidity(formElementElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    return showInputError(formElementElement, inputElement, options);
+    showInputError(formElementElement, inputElement, options);
+  } else {
+    hideInputError(formElementElement, inputElement, options);
   }
-
-  hideInputError(formElementElement, inputElement, options);
 }
 
 function hasInvalidInput(inputList) {
-  return !inputList.every((inputElement) => inputElement.validity.valid);
-}
-
-function disabledButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.add(inactiveButtonClass);
-  submitButton.disabled = true;
-}
-
-function enableButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
+  return inputList.every((inputElement) => !inputElement.validity.valid);
 }
 
 function toggleButtonState(
@@ -54,7 +51,6 @@ function toggleButtonState(
   submitButton,
   { inactiveButtonClass }
 ) {
-  console.log(hasInvalidInput(inputElements));
   if (hasInvalidInput(inputElements)) {
     submitButton.class.add(inactiveButtonClass);
     submitButton.disabled = true;
