@@ -40,7 +40,7 @@
       </footer>
     </div>
     <!--Edit modal-->
-    <div class="modal" id="profile-edit-modal">
+    <div class="modal" id="profile-edit-modal" novalidate>
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
@@ -76,7 +76,7 @@
     </div>
 
     <!--Add card modal-->
-    <div class="modal" id="add-card-modal">
+    <div class="modal" id="add-card-modal" novalidate>
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New place</h3>
@@ -101,8 +101,7 @@
           <button
             type="submit"
             disabled
-            class="modal__button_disabled"
-            disabled
+            class="modal__button modal__button_disabled"
           >
             Save
           </button>

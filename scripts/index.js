@@ -56,30 +56,25 @@ function handleCloseClick() {
 function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeKeyListener);
-  modal.addEventListener("click", profileEditModal);
-  document.addEventListener("keydown", profileEditModal);
   modal.addEventListener("mousedown", handleOverlay);
 }
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", escapeKeyListener);
-  modal.removeEventListener("click", profileEditModal);
-  document.removeEventListener("keydown", profileEditModal);
   modal.removeEventListener("mousedown", handleOverlay);
 }
 
 function escapeKeyListener(evt) {
-  function handleEscape(evt) {
-    if (evt.key === "Escape") {
-      closePopup(profileEditModal);
-    }
+  if (evt.key === "Escape") {
+    closePopup(profileEditModal);
   }
 }
 
 function handleOverlay(evt) {
-  if (evt.target.id === profileEditModal.id) {
+  if (Array.from(evt.target.classList).includes("modal_opened")) {
     closePopup(profileEditModal);
+    closePopup(addCardModal);
   }
 }
 
