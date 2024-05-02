@@ -55,7 +55,10 @@
             maxlength="40"
             required
           />
-          <span class="modal__error" id="profile-title-input-error"></span>
+          <span
+            class="modal__error_visible"
+            id="profile-title-input-error"
+          ></span>
           <input
             type="text"
             class="modal__input"
@@ -67,7 +70,7 @@
             required
           />
           <span
-            class="modal__error"
+            class="modal__error_visible"
             id="profile-description-input-error"
           ></span>
           <button type="submit" class="modal__button">Save</button>
@@ -87,9 +90,14 @@
             name="title"
             id="profile-title-input"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
-          <span class="modal__error" id="profile-title-input-error"></span>
+          <span
+            class="modal__error_visible"
+            id="profile-title-input-error"
+          ></span>
           <input
             type="url"
             class="modal__input"
@@ -97,11 +105,14 @@
             id="profile-url-input"
             placeholder="image URL"
             required
-          />
+          /><span
+            class="modal__error_visible"
+            id="profile-title-input-error"
+          ></span>
           <button
             type="submit"
-            disabled
             class="modal__button modal__button_disabled"
+            disabled
           >
             Save
           </button>
@@ -131,6 +142,7 @@
     </template>
     <!--index.js-->
     <script defer src="./scripts/index.js"></script>
+    <!--validation.js-->
     <script defer src="./scripts/validation.js"></script>
   </body>
 </html>

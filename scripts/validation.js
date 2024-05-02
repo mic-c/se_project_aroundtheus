@@ -22,14 +22,18 @@ function showInputError(
 }
 
 function hideInputError(
-  formElementElement,
+  formElement,
   inputElement,
   { inputErrorClass, errorClass }
 ) {
-  const errorMessageElement = formElement.querySelector(
-    "#${inputElement.id}-error"
+  const errorMessageElement = formElement.getElementById(
+    "${inputElement.id}-error" // profile-title-input-error
   );
+  console.log(1);
+  console.log(inputElement.id);
+  console.log(`${inputElement.id}-error`);
   inputElement.classList.remove("options.inputErrorClass");
+  console.log(formElement);
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
 }
@@ -63,12 +67,12 @@ function toggleButtonState(
 
 function setEventListeners(formElement, options) {
   const { inputSelector } = options;
-  const inputElements = [...formElement.querySelectorAll("inputSelector")];
+  const inputElements = [...formElement.querySelectorAll(inputSelector)];
   const submitButton = formElement.querySelector(options.submitButtonSelector);
 
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (e) => {
-      checkInputValidity(formElementElement, inputElement, options);
+      checkInputValidity(formElement, inputElement, options);
       toggleButtonState(inputElements, submitButton, options);
     });
   });

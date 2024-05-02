@@ -53,6 +53,11 @@ function handleCloseClick() {
 }
 
 //*   Functions    *//
+function resetCardForm() {
+  cardTitle.value = "";
+  cardUrlInput.value = "";
+}
+
 function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeKeyListener);
