@@ -9,12 +9,12 @@ function enableButton(submitButton, inactiveButtonClass) {
 }
 
 function showInputError(
-  formElementElement,
+  formElement,
   inputElement,
   { inputErrorClass, errorClass }
 ) {
   const errorMessageElement = formElement.querySelector(
-    "#${inputElement.id}-error"
+    `#${inputElement.id}-error`
   );
   inputElement.classList.add("options.inputErrorClass");
   errorMessageElement.textContent = inputElement.validationMessage;
@@ -26,23 +26,19 @@ function hideInputError(
   inputElement,
   { inputErrorClass, errorClass }
 ) {
-  const errorMessageElement = formElement.getElementById(
-    "${inputElement.id}-error" // profile-title-input-error
+  const errorMessageElement = formElement.querySelector(
+    `#${inputElement.id}-error`
   );
-  console.log(1);
-  console.log(inputElement.id);
-  console.log(`${inputElement.id}-error`);
   inputElement.classList.remove("options.inputErrorClass");
-  console.log(formElement);
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
 }
 
-function checkInputValidity(formElementElement, inputElement, options) {
+function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    showInputError(formElementElement, inputElement, options);
+    showInputError(formElement, inputElement, options);
   } else {
-    hideInputError(formElementElement, inputElement, options);
+    hideInputError(formElement, inputElement, options);
   }
 }
 
@@ -56,7 +52,7 @@ function toggleButtonState(
   { inactiveButtonClass }
 ) {
   if (hasInvalidInput(inputElements)) {
-    submitButton.class.add(inactiveButtonClass);
+    submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
     return;
   }
