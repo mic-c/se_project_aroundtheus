@@ -62,6 +62,9 @@ function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeKeyListener);
   modal.addEventListener("mousedown", handleOverlay);
+  modal.querySelector(".modal__close").addEventListener("click", () => {
+    closePopup(imagePreviewModal);
+  });
 }
 
 function closePopup(modal) {
@@ -80,6 +83,7 @@ function handleOverlay(evt) {
   if (Array.from(evt.target.classList).includes("modal_opened")) {
     closePopup(profileEditModal);
     closePopup(addCardModal);
+    closePopup(imagePreviewModal);
   }
 }
 
