@@ -117,18 +117,19 @@
 
 .modal__error {
   color: #ff0000;
-  opacity: 0;
+  visibility: visible;
   width: 100%;
   font-weight: 400;
+  border-bottom: #ff0000;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 12px;
-  line-height: 1.2;
+  line-height: 15px;
   display: block;
   margin-top: 5px;
 }
 
 .modal__input_type_error {
   border-bottom: 1px solid #ff0000;
-  font-family: "Inter", Arial, sans-serif;
 }
 
 .modal__error_visible {

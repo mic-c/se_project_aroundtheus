@@ -40,8 +40,8 @@ const profileDescriptionInput = document.querySelector(
 const addNewCardButton = document.querySelector(".profile__add-button");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
-const cardTitleInput = addCardFormElement.querySelector("#profile-title-input");
-const cardUrlInput = addCardFormElement.querySelector("#profile-url-input");
+const cardTitleInput = addCardFormElement.querySelector("#card-title-input");
+const cardUrlInput = addCardFormElement.querySelector("#card-url-input");
 const profileFormElement = profileEditModal.querySelector(".modal__form");
 const cardTemplate = document
   .querySelector("#card-template")
@@ -75,7 +75,8 @@ function closePopup(modal) {
 
 function escapeKeyListener(evt) {
   if (evt.key === "Escape") {
-    closePopup(profileEditModal);
+    const openModal = document.querySelector(".modal_opened");
+    closePopup(openPopup);
   }
 }
 
@@ -101,7 +102,6 @@ function handleAddCardFormSubmit(event) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closePopup(addCardModal);
-  addCardFormElement.requestFullscreen();
 }
 
 //*    Event Listeners    *//
@@ -160,12 +160,11 @@ addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
 
+//*   Image Preview Listeners   *//
 function handleCardImageClick(event) {
   if (event.target.classList.contains("card__image")) {
     const cardImage = event.target;
     const cardTitle = cardImage.closest(".card").querySelector(".card__title");
-
-    //*   Image Preview Listeners   *//
     imagePreviewModal.querySelector("#preview-image").src = cardImage.src;
     imagePreviewModal.querySelector("#preview-image").alt =
       cardTitle.textContent;

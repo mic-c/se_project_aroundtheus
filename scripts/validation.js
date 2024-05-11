@@ -1,13 +1,3 @@
-function disabledButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.add(inactiveButtonClass);
-  submitButton.disabled = true;
-}
-
-function enableButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
-}
-
 function showInputError(
   formElement,
   inputElement,
@@ -29,17 +19,26 @@ function hideInputError(
   const errorMessageElement = formElement.querySelector(
     `#${inputElement.id}-error`
   );
-  inputElement.classList.remove("options.inputErrorClass");
+  inputElement.classList.remove(inputErrorClass);
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
 }
 
 function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, options);
-  } else {
-    hideInputError(formElement, inputElement, options);
+    return showInputError(formElement, inputElement, options);
   }
+  hideInputError(formElement, inputElement, options);
+}
+
+function disabledButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+function enableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
 }
 
 function hasInvalidInput(inputList) {
@@ -52,13 +51,10 @@ function toggleButtonState(
   { inactiveButtonClass }
 ) {
   if (hasInvalidInput(inputElements)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
+    disabledButton(submitButton, inactiveButtonClass);
     return;
   }
-
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
+  enableButton(submitButton, inactiveButtonClass);
 }
 
 function setEventListeners(formElement, options) {
