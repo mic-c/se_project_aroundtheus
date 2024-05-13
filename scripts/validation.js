@@ -6,7 +6,7 @@ function showInputError(
   const errorMessageElement = formElement.querySelector(
     `#${inputElement.id}-error`
   );
-  inputElement.classList.add("options.inputErrorClass");
+  inputElement.classList.add(inputErrorClass);
   errorMessageElement.textContent = inputElement.validationMessage;
   errorMessageElement.classList.add(errorClass);
 }
