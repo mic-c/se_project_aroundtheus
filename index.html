@@ -45,34 +45,37 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
         <form class="modal__form">
-          <input
-            type="text"
-            class="modal__input"
-            name="title"
-            id="profile-title-input"
-            placeholder="Name"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span
-            class="modal__error_visible"
-            id="profile-title-input-error"
-          ></span>
-          <input
-            type="text"
-            class="modal__input"
-            name="description"
-            id="profile-description-input"
-            placeholder="Description"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span
-            class="modal__error_visible"
-            id="profile-description-input-error"
-          ></span>
+          <label class="modal__error_wrapper">
+            <input
+              type="text"
+              class="modal__input"
+              name="title"
+              id="profile-title-input"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span
+              class="modal__error_visible"
+              id="profile-title-input-error"
+            ></span> </label
+          ><label class="modal__error_wrapper">
+            <input
+              type="text"
+              class="modal__input"
+              name="description"
+              id="profile-description-input"
+              placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__error_visible"
+              id="profile-description-input-error"
+            ></span>
+          </label>
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
@@ -84,25 +87,34 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New place</h3>
         <form class="modal__form" id="add-card-form">
-          <input
-            type="text"
-            class="modal__input"
-            name="title"
-            id="card-title-input"
-            placeholder="Title"
-            minlength="3"
-            maxlength="30"
-            required
-          />
-          <span class="modal__error_visible" id="card-title-input-error"></span>
-          <input
-            type="url"
-            class="modal__input"
-            name="url"
-            id="card-url-input"
-            placeholder="image URL"
-            required
-          /><span class="modal__error_visible" id="card-url-input-error"></span>
+          <label class="modal__error_wrapper">
+            <input
+              type="text"
+              class="modal__input"
+              name="title"
+              id="card-title-input"
+              placeholder="Title"
+              minlength="3"
+              maxlength="30"
+              required
+            />
+            <span
+              class="modal__error_visible"
+              id="card-title-input-error"
+            ></span> </label
+          ><label class="modal__error_wrapper">
+            <input
+              type="url"
+              class="modal__input"
+              name="url"
+              id="card-url-input"
+              placeholder="image URL"
+              required
+            /><span
+              class="modal__error_visible"
+              id="card-url-input-error"
+            ></span>
+          </label>
           <button
             type="submit"
             class="modal__button modal__button_disabled"
@@ -114,7 +126,7 @@
       </div>
     </div>
     <div class="modal" id="modal__image-preview">
-      <div class="modal__container modal__container-preview">
+      <div class="modal__container modal__container_preview">
         <button class="modal__close" id="image-preview-close-button"></button>
         <img src="" alt="" class="modal__image-preview" id="preview-image" />
         <p class="modal__image_title"></p>

@@ -161,7 +161,7 @@ function handleCardImageClick(event) {
     imagePreviewModal.querySelector("#preview-image").alt =
       cardTitle.textContent;
     imagePreviewModal.querySelector(".modal__image_title").textContent =
-      cardImage.textContent;
+      cardTitle.textContent;
     openPopup(imagePreviewModal);
   }
 }
