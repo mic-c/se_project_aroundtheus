@@ -47,18 +47,15 @@ const cardTemplate = document
   .content.querySelector(".card");
 const imagePreviewModal = document.querySelector("#modal__image-preview");
 const cardListEl = document.querySelector(".cards__list");
-function handleCloseClick() {
-  closePopup();
-}
 
 //*   Functions    *//
 function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeKeyListener);
   modal.addEventListener("mousedown", handleOverlay);
-  modal.querySelector(".modal__close").addEventListener("click", () => {
-    closePopup(imagePreviewModal);
-  });
+  //modal.querySelector(".modal__close").addEventListener("click", () => {
+  //closePopup(imagePreviewModal);
+  // });
 }
 
 function closePopup(modal) {
@@ -93,6 +90,7 @@ function handleAddCardFormSubmit(event) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
+  addCardFormElement.reset();
   closePopup(addCardModal);
 }
 

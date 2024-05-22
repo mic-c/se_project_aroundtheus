@@ -1,5 +1,4 @@
 .modal {
-  color: #ff0000;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,6 +75,13 @@
   cursor: pointer;
 }
 
+.modal__button_disabled {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgb(252, 250, 250);
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.2);
+}
+
 .modal__button:hover {
   opacity: 0.8;
 }
@@ -143,13 +149,6 @@
 .modal__error_wrapper {
   width: 100%;
   position: relative;
-}
-
-.modal__button_disabled {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background: rgb(252, 250, 250);
-  pointer-events: none;
-  color: rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 650px) {
