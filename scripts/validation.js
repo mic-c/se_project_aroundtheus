@@ -14,35 +14,41 @@ function showInputError(
 function hideInputError(
   formElement,
   inputElement,
-  { inputErrorClass, errorClass }
+  { errorClass, inputErrorClass }
 ) {
   const errorMessageElement = formElement.querySelector(
     `#${inputElement.id}-error`
   );
   inputElement.classList.remove(inputErrorClass);
-  errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(errorClass);
+  errorMessageElement.textContent = "";
 }
 
 function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    return showInputError(formElement, inputElement, options);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      options
+    );
+  } else {
+    hideInputError(formElement, inputElement, options);
   }
-  hideInputError(formElement, inputElement, options);
-}
-
-function disabledButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.add(inactiveButtonClass);
-  submitButton.disabled = true;
-}
-
-function enableButton(submitButton, inactiveButtonClass) {
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
 }
 
 function hasInvalidInput(inputList) {
   return inputList.every((inputElement) => !inputElement.validity.valid);
+}
+
+function disabledSubmitButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+function enableSubmitButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
 }
 
 function toggleButtonState(
@@ -51,10 +57,10 @@ function toggleButtonState(
   { inactiveButtonClass }
 ) {
   if (hasInvalidInput(inputElements)) {
-    disabledButton(submitButton, inactiveButtonClass);
+    disabledSubmitButton(submitButton, inactiveButtonClass);
     return;
   }
-  enableButton(submitButton, inactiveButtonClass);
+  enableSubmitButton(submitButton, inactiveButtonClass);
 }
 
 function setEventListeners(formElement, options) {
