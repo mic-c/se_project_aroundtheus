@@ -15,7 +15,7 @@
 
 .modal_opened {
   opacity: 1;
-  color: #ff0000;
+  color: #fff;
   visibility: visible;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
@@ -130,12 +130,9 @@
 .modal__error {
   color: #ff0000;
   position: absolute;
-  max-width: inherit;
-  transition: opacity 0.3s;
   font-family: "Inter", Arial, sans-serif;
   font-size: 12px;
-  line-height: 15px;
-  opacity: 0;
+  padding-top: 5px;
 }
 
 .modal__input_type_error {
@@ -147,7 +144,6 @@
 }
 
 .modal__error_wrapper {
-  width: 100%;
   position: relative;
 }
 
