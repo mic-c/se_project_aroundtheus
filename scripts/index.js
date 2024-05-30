@@ -49,7 +49,7 @@ const imagePreviewModal = document.querySelector("#modal__image-preview");
 const cardListEl = document.querySelector(".cards__list");
 
 //*   Functions    *//
-function aaa(evt) {
+function escapeKeyListener(evt) {
   closePopup(imagePreviewModal);
 }
 
@@ -57,14 +57,18 @@ function openPopup(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", escapeKeyListener);
   modal.addEventListener("mousedown", handleOverlay);
-  modal.querySelector(".modal__close").addEventListener("click", aaa);
+  modal
+    .querySelector(".modal__close")
+    .addEventListener("click", escapeKeyListener);
 }
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", escapeKeyListener);
   modal.removeEventListener("mousedown", handleOverlay);
-  modal.querySelector(".modal__close").removeEventListener("click", aaa);
+  modal
+    .querySelector(".modal__close")
+    .removeEventListener("click", escapeKeyListener);
 }
 
 function escapeKeyListener(evt) {
