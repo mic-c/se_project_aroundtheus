@@ -39,19 +39,19 @@ const checkInputValidity = (formElement, inputElement, options) => {
 };
 
 const hasInvalidInput = (inputList) => {
-  return inputList.every((inputElement) => {
+  return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-const disableSubmitButton = (inputElement, inactiveButtonClass) => {
-  inputElement.classList.add(inactiveButtonClass);
-  inputElement.disabled = true;
+const disableSubmitButton = (submitButton, { inactiveButtonClass }) => {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
 };
 
-const enableSubmitButton = (inputElement, inactiveButtonClass) => {
-  inputElement.classList.remove(inactiveButtonClass);
-  inputElement.disabled = false;
+const enableSubmitButton = (button, { inactiveButtonClass }) => {
+  button.classList.remove(inactiveButtonClass);
+  button.disabled = false;
 };
 
 const toggleButtonState = (
@@ -60,9 +60,9 @@ const toggleButtonState = (
   inactiveButtonClass
 ) => {
   if (hasInvalidInput(inputElements)) {
-    disableSubmitButton(inputElements, inactiveButtonClass);
+    disableSubmitButton(submitButton, inactiveButtonClass);
   } else {
-    enableSubmitButton(inputElements, inactiveButtonClass);
+    enableSubmitButton(submitButton, inactiveButtonClass);
   }
 };
 

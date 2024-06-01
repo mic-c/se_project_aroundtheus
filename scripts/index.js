@@ -49,8 +49,14 @@ const imagePreviewModal = document.querySelector("#modal__image-preview");
 const cardListEl = document.querySelector(".cards__list");
 
 //*   Functions    *//
-function escapeKeyListener(evt) {
-  closePopup(imagePreviewModal);
+//function escapeKeyListener(evt) {
+// closePopup(imagePreviewModal);
+//}
+
+function closePopupClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  }
 }
 
 function openPopup(modal) {

@@ -129,7 +129,6 @@
 
 .modal__error {
   color: #ff0000;
-  position: absolute;
   font-family: "Inter", Arial, sans-serif;
   font-size: 12px;
   padding-top: 5px;
