@@ -1,4 +1,4 @@
-export default class FormValidator {
+class FormValidator {
   constructor(config, formElement) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
@@ -71,21 +71,24 @@ export default class FormValidator {
     this._submitButton = this._formElement.querySelector(
       this._submitButtonSelector
     );
-    this.toggleButtonState();
-    console.log(toggleButtonState());
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+      this._inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
+        this.toggleButtonState();
       });
     });
   }
 
   enabaleValidation() {
+    this._formElements = [...document.querySelectorAll(options.formSelector)];
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
+    this._setEventListeners();
   }
 }
+
+export default FormValidator;
 
 const formValidatorConfig = {
   inputSelector: ".modal__input",
