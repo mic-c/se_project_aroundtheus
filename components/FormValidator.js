@@ -72,15 +72,14 @@ class FormValidator {
       this._submitButtonSelector
     );
     this._inputList.forEach((inputElement) => {
-      this._inputElement.addEventListener("input", () => {
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this.toggleButtonState();
+        this._toggleButtonState();
       });
     });
   }
 
-  enabaleValidation() {
-    this._formElements = [...document.querySelectorAll(options.formSelector)];
+  enableValidation() {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });

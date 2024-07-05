@@ -159,7 +159,7 @@ addCardModalCloseButton.addEventListener("click", () =>
 
 //*   Image Preview Listeners   *//
 
-const Config = {
+const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -169,8 +169,8 @@ const Config = {
 };
 
 // Validation //
-const editFormEl = profileEditModal.querySelector("#profile-edit-modal");
-const addFormEl = addCardModal.querySelector("#add-card-modal");
+const editFormEl = profileEditModal.querySelector(".modal__form");
+const addFormEl = addCardModal.querySelector(".modal__form");
 const addFormValidator = new FormValidator(config, addFormEl);
 addFormValidator.enableValidation();
 const editFormValidator = new FormValidator(config, editFormEl);
