@@ -109,7 +109,6 @@ function handleAddCardFormSubmit(event) {
   renderCard({ name, link }, cardsWrap);
   addCardFormElement.reset();
   closePopup(addCardModal);
-  addFormValidator.toggleButtonState();
 }
 
 //*    Event Listeners    *//
