@@ -6,20 +6,23 @@
     <meta name="author" content="Chukwuka Arimah" />
     <meta name="keywords" content="html, css," />
     <title>Around The U.S</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/Header.svg"
+          src="<%=require('./images/Header.svg')%>"
           alt="Around The U.S Logo"
           class="header__logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img src="./images/Avatar.svg" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.svg')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Chukwuka Arimah</h1>
             <button
@@ -144,7 +147,6 @@
       </li>
     </template>
 
-    <script type="module" src="./pages/index.js" defer></script>
     <script type="module" src="./components/FormValidator.js" defer></script>
   </body>
 </html>
