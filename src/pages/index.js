@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import { initialCards, config } from "../utils/constants.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
@@ -12,7 +13,7 @@ import UserInfo from "../components/UserInfo.js";
 
 //Edit Profile
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditForm = document.forms["profile-form"];
+const profileEditForm = document.forms["modal__form"];
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileTitleInput = profileEditModal.querySelector(
   "#profile-title-input"
@@ -46,7 +47,7 @@ const newCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 newCardPopup.setEventListeners();
 
 //Preview Image Popup
-const previewImagePopup = new PopupWithImage("#preview-modal");
+const previewImagePopup = new PopupWithImage("#modal__image-preview");
 previewImagePopup.setEventListeners();
 
 //Section
