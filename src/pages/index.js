@@ -13,7 +13,7 @@ import { initialCards, config } from "../utils/constants.js";
 
 //Edit Profile
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditForm = document.forms["modal__form"];
+const profileEditForm = document.forms["profile-edit-form"];
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileTitleInput = profileEditModal.querySelector(
   "#profile-title-input"
@@ -24,7 +24,7 @@ const profileDescriptionInput = profileEditModal.querySelector(
 
 //Add New Card
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardForm = document.forms["card-form"];
+const addCardForm = document.forms["add-card-form"];
 const addCardBtn = document.querySelector(".profile__add-button");
 
 const renderCard = (cardData) => {
@@ -98,14 +98,13 @@ profileEditBtn.addEventListener("click", () => {
     title: userInput.name,
     subheader: userInput.about,
   });
-  profileEditFormValidator.resetValidation();
   editProfilePopup.open();
 });
 
 //New Card Form
 addCardBtn.addEventListener("click", () => {
   newCardPopup.open();
-  addCardFormValidator.toggleButtonState();
+  addCardFormValidator._toggleButtonState();
 });
 
 /* -------------------------------------------------------------------------- */
