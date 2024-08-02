@@ -66,8 +66,8 @@ const user = new UserInfo(".profile__title", ".profile__description");
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
-function handleImageClick(cardData) {
-  previewImagePopup.open(cardData);
+function handleImageClick(name, link) {
+  previewImagePopup.open(name, link);
 }
 
 function handleProfileEditSubmit(profileData) {
