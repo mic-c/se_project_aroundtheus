@@ -66,13 +66,13 @@ const user = new UserInfo(".profile__title", ".profile__description");
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
-function handleImageClick(name, link) {
-  previewImagePopup.open(name, link);
+function handleImageClick(cardData) {
+  previewImagePopup.open(cardData);
 }
 
 function handleProfileEditSubmit(profileData) {
   const name = profileData.title;
-  const description = profileData.subheader;
+  const description = profileData.description;
   user.setUserInfo(name, description);
   editProfilePopup.close();
 }
@@ -96,7 +96,7 @@ profileEditBtn.addEventListener("click", () => {
   const userInput = user.getUserInfo();
   editProfilePopup.setInputValues({
     title: userInput.name,
-    subheader: userInput.about,
+    description: userInput.about,
   });
   editProfilePopup.open();
 });
