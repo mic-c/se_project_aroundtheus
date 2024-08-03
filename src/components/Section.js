@@ -2,7 +2,7 @@ export default class Section {
   constructor({ items, renderer }, classSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._classSection = document.querySelector(classSelector);
+    this._cardsSection = document.querySelector(classSelector);
   }
 
   renderItems() {
@@ -12,6 +12,6 @@ export default class Section {
   }
 
   addItem(element) {
-    this._classSection.prepend(element);
+    this._cardsSection.prepend(element);
   }
 }
