@@ -63,7 +63,11 @@ const section = new Section(
 section.renderItems();
 
 //UserInfo
-const user = new UserInfo(".profile__title", ".profile__description");
+const user = new UserInfo({
+  name: ".profile__title",
+  job: ".profile__description",
+  avatar: ".profile__picture",
+});
 
 //Constructor body
 const api = new Api({
