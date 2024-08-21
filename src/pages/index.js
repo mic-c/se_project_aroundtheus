@@ -6,6 +6,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, config } from "../utils/constants.js";
+import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
@@ -63,6 +65,15 @@ section.renderItems();
 //UserInfo
 const user = new UserInfo(".profile__title", ".profile__description");
 
+//Constructor body
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "2e9b8c64-af02-41c6-9bfd-4754c20777e9",
+    "Content-type": "application/json",
+  },
+});
+
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -106,6 +117,21 @@ addCardBtn.addEventListener("click", () => {
   newCardPopup.open();
   //addCardFormValidator._toggleButtonState();//
 });
+
+/* -------------------------------------------------------------------------- */
+/*                               Rendering                                 */
+/* -------------------------------------------------------------------------- */
+api
+  .getUserAndCards()
+  .then(({ userInfo, cards }) => {
+    console.log({ userInfo, cards });
+    user.setUserInfo({ name: userInfo.name, about: userInfo.about }); //render profile info
+    user.setUserAvatar(userInfo.avatar); //render profile pic
+    section.renderItems(cards); //render cards from server
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                               Validation                                 */

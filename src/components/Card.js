@@ -1,10 +1,22 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardImageClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleCardImageClick,
+    handleCardDelete,
+    handleCardLike
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._handleCardImageClick = handleCardImageClick;
+    this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
 
     this._cardSelector = cardSelector;
+  }
+
+  getId() {
+    return this._id;
   }
 
   _getTemplate() {
@@ -44,6 +56,7 @@ export default class Card {
 
   getView() {
     this._element = this._getTemplate();
+    this._createCard();
 
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
@@ -51,5 +64,27 @@ export default class Card {
 
     this._setEventListeners();
     return this._element;
+  }
+
+  //method to create card
+  _createCard() {
+    const cardImageElement = this._element.querySelector(".card__image");
+    const cardTitleElement = this._element.querySelector(".card__title");
+
+    this._updateLikeStatus();
+  }
+
+  //method to handle card like and unlike in DOM
+  _updateLikeStatus() {
+    if (this.like) {
+      this._element
+        .querySelector(".card__like-button")
+        .classList.add("card__like-button_active");
+      console.log("Liked!");
+    } else {
+      this._element
+        .querySelector(".card__like-button")
+        .classList.remove("card__like-button_active");
+    }
   }
 }
