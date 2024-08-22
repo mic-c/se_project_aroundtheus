@@ -63,11 +63,11 @@ const section = new Section(
 section.renderItems();
 
 //UserInfo
-const user = new UserInfo({
-  name: ".profile__title",
-  job: ".profile__description",
-  avatar: ".profile__picture",
-});
+const user = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 
 //Constructor body
 const api = new Api({
@@ -126,16 +126,18 @@ addCardBtn.addEventListener("click", () => {
 /*                               Rendering                                 */
 /* -------------------------------------------------------------------------- */
 api
-  .getUserAndCards()
-  .then(({ userInfo, cards }) => {
-    console.log({ userInfo, cards });
-    user.setUserInfo({ name: userInfo.name, about: userInfo.about }); //render profile info
-    user.setUserAvatar(userInfo.avatar); //render profile pic
-    section.renderItems(cards); //render cards from server
+  .getInitialCards()
+  .then((data) => {
+    cardSection.renderItems(data);
   })
   .catch((err) => {
     console.error(err);
   });
+
+api.getUserInfo().then((info) => {
+  console.log(info);
+  user.setUserInfo(info.name, info.about, info.avatar);
+});
 
 /* -------------------------------------------------------------------------- */
 /*                               Validation                                 */
