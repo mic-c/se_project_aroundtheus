@@ -12,6 +12,11 @@ export default class UserInfo {
     };
   }
 
+  setUserInfoOnSubmit(name, description) {
+    this._name.textContent = name;
+    this._description.textContent = description;
+  }
+
   setUserInfo(name, about, avatar) {
     this._name.textContent = name;
     this._about.textContent = about;

@@ -38,11 +38,11 @@ const renderCard = (cardData) => {
 /*                                  Popups                                    */
 /* -------------------------------------------------------------------------- */
 //Edit Profile Popup
-const editProfilePopup = new PopupWithForm(
+const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-editProfilePopup.setEventListeners();
+profileEditPopup.setEventListeners();
 
 //Add New Card Popup
 const newCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
@@ -62,12 +62,29 @@ const section = new Section(
 );
 section.renderItems();
 
-//UserInfo
+//UserInfo//
 const user = new UserInfo(
   ".profile__title",
   ".profile__description",
-  ".profile__image"
+  ".profile__avatar"
 );
+
+//Instantiate popupWithForm for Profile//
+const profilePopup = new PopupWithForm(
+  "#profile__edit-modal",
+  handleAddCardSubmit
+);
+profilePopup.setEventListeners();
+
+//Preview Image popup class//
+const popupImage = new PopupWithImage("#preview__modal");
+popupImage.setEventListeners();
+
+const avatarPopup = new PopupWithForm("#avatar__modal", handleAvatarUpdate);
+avatarPopup.setEventListeners();
+
+const deleteConfirm = new PopupWithConfirm("#delete__modal");
+deleteConfirm.setEventListeners();
 
 //Constructor body
 const api = new Api({
@@ -103,6 +120,15 @@ function handleAddCardSubmit(newCardData, cardListElement) {
 function createCard(cardData) {
   return new Card(cardData, "#card-template", handleImageClick).getView();
 }
+
+const cardSection = new Section(
+  {
+    renderer: (item) => {
+      cardSection.addItem(makeCard(item));
+    },
+  },
+  ".cards"
+);
 /* -------------------------------------------------------------------------- */
 /*                               Event Listeners                              */
 /* -------------------------------------------------------------------------- */
@@ -125,6 +151,7 @@ addCardBtn.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 /*                               Rendering                                 */
 /* -------------------------------------------------------------------------- */
+
 api
   .getInitialCards()
   .then((data) => {
