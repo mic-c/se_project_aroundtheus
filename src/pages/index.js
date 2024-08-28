@@ -9,6 +9,22 @@ import { initialCards, config } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
+//API//
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "2e9b8c64-af02-41c6-9bfd-4754c20777e9",
+    "Content-type": "application/json",
+  },
+});
+
+//UserInfo//
+const user = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__avatar"
+);
+
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
 /* -------------------------------------------------------------------------- */
@@ -62,20 +78,6 @@ const section = new Section(
 );
 section.renderItems();
 
-//UserInfo//
-const user = new UserInfo(
-  ".profile__title",
-  ".profile__description",
-  ".profile__avatar"
-);
-
-//Instantiate popupWithForm for Profile//
-const profilePopup = new PopupWithForm(
-  "#profile__edit-modal",
-  handleAddCardSubmit
-);
-profilePopup.setEventListeners();
-
 //Preview Image popup class//
 const popupImage = new PopupWithImage("#preview__modal");
 popupImage.setEventListeners();
@@ -85,15 +87,6 @@ avatarPopup.setEventListeners();
 
 const deleteConfirm = new PopupWithConfirm("#delete__modal");
 deleteConfirm.setEventListeners();
-
-//Constructor body
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "2e9b8c64-af02-41c6-9bfd-4754c20777e9",
-    "Content-type": "application/json",
-  },
-});
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -106,7 +99,7 @@ function handleProfileEditSubmit(profileData) {
   const name = profileData.title;
   const description = profileData.description;
   user.setUserInfo(name, description);
-  editProfilePopup.close();
+  profileEditPopup.close();
 }
 
 function handleAddCardSubmit(newCardData, cardListElement) {
@@ -135,11 +128,11 @@ const cardSection = new Section(
 //Edit Profile Form
 profileEditBtn.addEventListener("click", () => {
   const userInput = user.getUserInfo();
-  editProfilePopup.setInputValues({
+  profileEditPopup.setInputValues({
     title: userInput.name,
     description: userInput.about,
   });
-  editProfilePopup.open();
+  profileEditPopup.open();
 });
 
 //New Card Form
@@ -152,19 +145,28 @@ addCardBtn.addEventListener("click", () => {
 /*                               Rendering                                 */
 /* -------------------------------------------------------------------------- */
 
+// API Calls
 api
-  .getInitialCards()
-  .then((data) => {
-    cardSection.renderItems(data);
+  .getProfile()
+  .then((currentUser) => {
+    console.log("Current user ID:", currentUser._id);
   })
   .catch((err) => {
-    console.error(err);
+    console.error("Failed to load user information:", err);
   });
 
-api.getUserInfo().then((info) => {
-  console.log(info);
-  user.setUserInfo(info.name, info.about, info.avatar);
-});
+api
+  .getCards()
+  .then((cardData) => {
+    console.log("Fetched cards:", cardData);
+    cardData.forEach((cardItem) => {
+      const cardElement = createCard(cardItem);
+      cardSection.addItem(cardElement);
+    });
+  })
+  .catch((err) => {
+    console.error("Error fetching initial cards", err);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                               Validation                                 */

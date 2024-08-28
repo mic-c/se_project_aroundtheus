@@ -1,99 +1,147 @@
 export default class Api {
-  constructor(info) {
-    this._baseUrl = info.baseUrl;
-    this._headers = info.headers;
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
+    if (res.ok) return res.json();
+    return Promise.reject(`Error: ${res.status} + ${res.message}`);
   }
 
-  async getIntitialCards() {
-    const response = await fetch(this._baseUrl + "/cards", {
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse);
+  }
+
+  // Get Current User Info
+  getProfile() {
+    return fetch(this._baseUrl + "/users/me", {
+      method: "GET",
       headers: this._headers,
-    });
-    return await this._checkResponse(response);
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
-  async getUserInfo() {
-    const response = await fetch(this._baseUrl + "/users/me", {
+  // Update Profile Info
+  patchProfileInfo(nameVar, bioVar) {
+    return fetch(this._baseUrl + "/users/me", {
+      method: "PATCH",
       headers: this._headers,
-    });
-    return await this._checkResponse(response);
+      body: JSON.stringify({
+        name: nameVar,
+        about: bioVar,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
-  async deleteCard(cardId) {
-    const response = await fetch(this._baseUrl + "/cards/" + cardId, {
-      method: "DELETE",
+  // Update Avatar
+  patchProfileAvatar(link) {
+    return fetch(this._baseUrl + "/users/me/avatar", {
+      method: "PATCH",
       headers: this._headers,
-    });
-    return await this._checkResponse(response);
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
-  async addCard(cardData) {
-    const response = await fetch(this._baseUrl + "/cards", {
+  // Get Initial Cards
+  getCards() {
+    return fetch(this._baseUrl + "/cards", {
+      method: "GET",
+      headers: this._headers,
+    })
+      .then(this._checkResponse)
+      .then((result) => {
+        return result;
+      });
+  }
+  // Create Card (POST)
+  postCards(card) {
+    return fetch(this._baseUrl + "/cards", {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.name,
-        link: cardData.cardUrl,
+        name: card.modal__input_type_title,
+        link: card.modal__input_type_link,
       }),
-    });
-    return await this._checkResponse(response);
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.error("POST Card Error:", err);
+      });
   }
 
-  async updateProfile(profileInfo) {
-    const response = await fetch(this._baseUrl + "/users/me", {
-      method: "PATCH",
+  // Delete Card
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+      method: "DELETE",
       headers: this._headers,
-      body: JSON.stringify({
-        name: profileInfo.name,
-        about: profileInfo.description,
-      }),
-    });
-    return await this._checkResponse(response);
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res
+          .text()
+          .then((text) => Promise.reject(`Error: ${res.status} - ${text}`));
+      })
+      .then((result) => {
+        console.log(result);
+      });
   }
 
-  async addLikes(cardId) {
-    console.log(cardId);
-    const response = await fetch(
-      this._baseUrl + "/cards/" + cardId + "/likes",
-      {
-        method: "PUT",
-        headers: this._headers,
-      }
-    );
-    return await this._checkResponse(response);
-  }
-
-  async removeLikes(cardId) {
-    const response = await fetch(
-      this._baseUrl + "/cards/" + cardId + "/likes",
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    );
-    return await this._checkResponse(response);
-  }
-
-  async checkLikesTruthy(cardId) {
-    const response = await fetch(this._baseUrl + "/cards/" + cardId, {
-      method: "GET",
+  // Like the Card (PUT)
+  putCardLike(cardID) {
+    return fetch(this._baseUrl + `/cards/${cardID}/likes`, {
+      method: "PUT",
       headers: this._headers,
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(`Error: ${res.status}`);
     });
-    return await this._checkResponse(response);
   }
 
-  async updateAvatar(Url) {
-    const response = await fetch(this._baseUrl + "/users/me/avatar", {
-      method: "PATCH",
+  // Dislike Card (DELETE)
+  deleteCardLike(cardID) {
+    return fetch(this._baseUrl + `/cards/${cardID}/likes`, {
+      method: "DELETE",
       headers: this._headers,
-      body: JSON.stringify({ avatar: Url }),
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(`Error: ${res.status}`);
     });
-    return await this._checkResponse(response);
   }
 }
