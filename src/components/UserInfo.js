@@ -7,23 +7,18 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
-      name: this._nameElement.textContent,
-      about: this._aboutElement.textContent,
+      name: this._name.textContent,
+      about: this._about.textContent,
+      avatar: this._avatar.src,
     };
   }
 
-  setUserInfoOnSubmit(name, description) {
+  setUserInfo(name, about) {
     this._name.textContent = name;
-    this._description.textContent = description;
+    this._description.textContent = about;
   }
 
-  setUserInfo(name, about, avatar) {
-    this._name.textContent = name;
-    this._about.textContent = about;
-    this._avatar.src = avatar;
-  }
-
-  setUserAvatar(avatarURl) {
-    this._avatar.src = avatarURl;
+  setUserAvatar(link) {
+    this._avatar.src = link;
   }
 }

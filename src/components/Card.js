@@ -8,15 +8,13 @@ export default class Card {
   ) {
     this._name = data.name;
     this._link = data.link;
+    this.isLiked = data.isLiked;
+    this._id = data._id;
     this._handleCardImageClick = handleCardImageClick;
     this._handleCardDelete = handleCardDelete;
     this._handleCardLike = handleCardLike;
 
     this._cardSelector = cardSelector;
-  }
-
-  getId() {
-    return this._id;
   }
 
   _getTemplate() {
@@ -34,7 +32,7 @@ export default class Card {
 
     this._element
       .querySelector(".card__trash-button")
-      .addEventListener("click", () => this._handleDeleteCard());
+      .addEventListener("click", () => this._handleCardDelete(this._id));
 
     this._element
       .querySelector(".card__image")
@@ -47,11 +45,6 @@ export default class Card {
     this._element
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
-  }
-
-  _handleDeleteCard() {
-    this._element.remove();
-    this._element = null;
   }
 
   getView() {
@@ -80,7 +73,6 @@ export default class Card {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");
-      console.log("Liked!");
     } else {
       this._element
         .querySelector(".card__like-button")
