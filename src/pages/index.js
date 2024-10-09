@@ -46,10 +46,10 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = document.forms["add-card-form"];
 const addCardBtn = document.querySelector(".profile__add-button");
 
-const renderCard = (cardData) => {
+function renderCard(cardData) {
   const cardElement = createCard(cardData);
-  section.addItem(cardElement);
-};
+  Section.addItem(cardElement);
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                  Popups                                    */
@@ -61,7 +61,7 @@ const editProfilePopup = new PopupWithForm(
     editProfilePopup.renderLoading(true);
 
     api
-      .editProfilePopup(profileData.title, profileData.subheader)
+      .editProfilePopup(profileData.title, profileData.description)
       .then((updatedUserInfo) => {
         user.setUserInfo(updatedUserInfo.name, updatedUserInfo.about);
         editProfilePopup.close();
@@ -153,7 +153,7 @@ function createCard(cardData) {
   ).getView();
 }
 
-const cardSection = new Section( // this is the SECOND instance
+const cardSection = new Section(
   {
     renderer: (item) => {
       cardSection.addItem(makeCard(item));
