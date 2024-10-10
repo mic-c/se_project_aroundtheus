@@ -149,7 +149,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleCardDeleteClick
+    handleDelete
   ).getView();
 }
 
@@ -165,12 +165,12 @@ const cardSection = new Section(
 // Handle card delete //
 function handleDelete(card) {
   deleteConfirm.open();
-  deleteConfirm.setConfirmSubmit(() => {
+  deleteConfirm.setSubmitAction(() => {
     deleteConfirm.renderLoading(true);
     api
       .deleteCard(card._id)
       .then(() => {
-        card.handleDeleteCard();
+        card.handleCardDelete();
         deleteConfirm.close();
       })
       .catch(console.error);

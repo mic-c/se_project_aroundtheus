@@ -32,7 +32,7 @@ export default class Card {
 
     this._element
       .querySelector(".card__trash-button")
-      .addEventListener("click", () => this._handleCardDelete(this._id));
+      .addEventListener("click", () => this._handleCardDelete(this));
 
     this._element
       .querySelector(".card__image")

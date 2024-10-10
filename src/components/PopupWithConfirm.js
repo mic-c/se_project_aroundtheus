@@ -9,6 +9,9 @@ export default class PopupWithConfirm extends Popup {
     );
     this._handleFormSubmit = handleFormSubmit;
   }
+  setSubmitAction(action) {
+    this._handleFormSubmit = action;
+  }
 
   open(id) {
     this._id = id;
@@ -19,15 +22,15 @@ export default class PopupWithConfirm extends Popup {
     super.setEventListeners();
     this._confirmBtn.addEventListener("click", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._id);
+      this._handleFormSubmit();
     });
   }
 
   renderLoading(isLoading) {
     if (isLoading) {
-      this._popupForm.textContent = "Delete...";
+      this._confirmBtn.textContent = "Delete...";
     } else {
-      this._popupForm.textContent = "Yes";
+      this._confirmBtn.textContent = "Yes";
     }
   }
 }
