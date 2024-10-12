@@ -17,6 +17,11 @@ export default class Card {
     this._cardSelector = cardSelector;
   }
 
+  removeCard() {
+    this._element.remove();
+    this._element = null;
+  }
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)

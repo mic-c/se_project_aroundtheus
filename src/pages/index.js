@@ -170,7 +170,7 @@ function handleDelete(card) {
     api
       .deleteCard(card._id)
       .then(() => {
-        card.handleCardDelete();
+        card.removeCard();
         deleteConfirm.close();
       })
       .catch(console.error);
