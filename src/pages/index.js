@@ -48,7 +48,7 @@ const addCardBtn = document.querySelector(".profile__add-button");
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
-  Section.addItem(cardElement);
+  section.addItem(cardElement);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -61,12 +61,12 @@ const editProfilePopup = new PopupWithForm(
     editProfilePopup.renderLoading(true);
 
     api
-      .editProfilePopup(profileData.title, profileData.description)
+      .updateProfileInfo(profileData.title, profileData.description)
       .then((updatedUserInfo) => {
-        user.setUserInfo(updatedUserInfo.name, updatedUserInfo.about);
+        userInfo.setUserInfo(updatedUserInfo.name, updatedUserInfo.about);
         editProfilePopup.close();
       })
-      .catch((err) => console.log(err))
+      .catch(console.error)
       .finally(() => {
         editProfilePopup.renderLoading(false);
       });
@@ -81,8 +81,11 @@ const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
   api
     .addCard({ name: title, link: url })
     .then((cardData) => {
-      renderCard(cardData);
+      const cardElement = createCard(cardData);
+      cardSection.addItem(cardElement);
       newCardPopup.close();
+      addCardForm.reset();
+      addCardFormValidator.enableValidation();
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -204,6 +207,7 @@ profileEditBtn.addEventListener("click", () => {
 
   profileTitleInput.value = cardData.name;
   profileDescriptionInput.value = cardData.about;
+  //profileEditFormValidator.resetValidation();
 
   editProfilePopup.open();
 });
@@ -211,12 +215,7 @@ profileEditBtn.addEventListener("click", () => {
 //New Card Form //
 addCardBtn.addEventListener("click", () => {
   newCardPopup.open();
-  //addCardFormValidator._toggleButtonState();//
 });
-
-// Delete Card Form //
-//const confirmation = new PopupWithConfirm("#delete-card-modal"); // USAGE 2
-//confirmation.setEventListeners(); //
 
 // Avatar Edit Form //
 const avatarEditBtn = document.querySelector("#avatar-edit-button");
