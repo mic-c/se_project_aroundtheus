@@ -9,6 +9,7 @@ export default class PopupWithConfirm extends Popup {
     );
     this._handleFormSubmit = handleFormSubmit;
   }
+
   setSubmitAction(action) {
     this._handleFormSubmit = action;
   }

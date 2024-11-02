@@ -48,7 +48,7 @@ const addCardBtn = document.querySelector(".profile__add-button");
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
-  section.addItem(cardElement);
+  cardSection.addItem(cardElement);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -58,6 +58,7 @@ function renderCard(cardData) {
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   (profileData) => {
+    handleProfileEditSubmit;
     editProfilePopup.renderLoading(true);
 
     api
@@ -76,6 +77,7 @@ editProfilePopup.setEventListeners();
 
 //Add New Card Popup //
 const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
+  handleAddCardSubmit;
   newCardPopup.renderLoading(true);
 
   api
@@ -99,23 +101,21 @@ const previewImagePopup = new PopupWithImage("#modal__image-preview");
 previewImagePopup.setEventListeners();
 
 // Edit Avatar Popup //
-const avatarEditPopup = new PopupWithForm(
-  "#profile-avatar-modal",
-  (formData) => {
-    avatarEditPopup.renderLoading(true);
 
-    api
-      .updateAvatar(formData.link)
-      .then((res) => {
-        user.changeAvatar(res.avatar);
-        avatarEditPopup.close();
-      })
-      .catch((err) => console.log("Error updating avatar:", err))
-      .finally(() => {
-        avatarEditPopup.renderLoading(false);
-      });
-  }
-);
+const avatarEditPopup = new PopupWithForm("#profile-avatar-modal", (url) => {
+  avatarEditPopup.renderLoading(true);
+
+  api
+    .updateAvatar(url)
+    .then((res) => {
+      userInfo.updateAvatar(res);
+      avatarEditPopup.close();
+    })
+    .catch((err) => console.log("Error updating avatar:", err))
+    .finally(() => {
+      avatarEditPopup.renderLoading(false);
+    });
+});
 avatarEditPopup.setEventListeners();
 
 const deleteConfirm = new PopupWithConfirm("#delete__modal", handleDelete);
@@ -152,6 +152,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
+    handleCardLike,
     handleDelete
   ).getView();
 }
@@ -181,17 +182,17 @@ function handleDelete(card) {
 }
 
 // Handle Like click //
-function handleLikeCard(card) {
+function handleCardLike(card) {
   if (card._isLiked) {
     api
-      .removeLike(card._id)
+      .disLikeCard(card._id)
       .then((res) => {
         card.updateIsLiked(res.isLiked);
       })
       .catch((err) => console.log(err));
   } else {
     api
-      .addLike(card._id)
+      .likeCard(card._id)
       .then((res) => {
         card.updateIsLiked(res.isLiked);
       })
@@ -207,8 +208,6 @@ profileEditBtn.addEventListener("click", () => {
 
   profileTitleInput.value = cardData.name;
   profileDescriptionInput.value = cardData.about;
-  //profileEditFormValidator.resetValidation();
-
   editProfilePopup.open();
 });
 
@@ -222,11 +221,20 @@ const avatarEditBtn = document.querySelector("#avatar-edit-button");
 const avatarForm = document.forms["modal__form_avatar"];
 
 const profileImage = document.querySelector(".profile__image");
+
+profileImage.addEventListener("click", () => {
+  const cardData = userInfo.getUserInfo();
+
+  profileTitleInput.value = cardData.name;
+  profileDescriptionInput.value = cardData.about;
+  avatarEditPopup.open();
+});
 /* -------------------------------------------------------------------------- */
 /*                               Rendering                                 */
 /* -------------------------------------------------------------------------- */
 
 // API Calls
+/*
 api
   .getInitialCards()
   .then((currentUser) => {
@@ -235,7 +243,7 @@ api
   .catch((err) => {
     console.error("Failed to load user information:", err);
   });
-
+*/
 api
   .getInitialCards()
   .then((cardData) => {

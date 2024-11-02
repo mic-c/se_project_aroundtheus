@@ -3,8 +3,8 @@ export default class Card {
     data,
     cardSelector,
     handleCardImageClick,
-    handleCardDelete,
-    handleCardLike
+    handleCardLike,
+    handleCardDelete
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -73,8 +73,8 @@ export default class Card {
   }
 
   //method to handle card like and unlike in DOM
-  _updateLikeStatus() {
-    if (this.like) {
+  _updateLikeStatus(likeCard) {
+    if (likeCard) {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");

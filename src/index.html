@@ -18,11 +18,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.svg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar" id="profile__avatar">
+            <img
+              src="<%=require('./images/Avatar.svg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <div class="profile__image_edit-pencil"></div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Chukwuka Arimah</h1>
             <button
@@ -148,7 +151,7 @@
     <div class="modal" id="profile-avatar-modal">
       <div class="modal__container">
         <button class="modal__close" id="modal__close-button"></button>
-        <p class="modal__heading">Add New Photo</p>
+        <p class="modal__heading">Change profile picture</p>
         <form class="modal__form modal__popup__form">
           <input
             type="url"
