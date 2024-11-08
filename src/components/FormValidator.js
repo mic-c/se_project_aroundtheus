@@ -5,7 +5,6 @@ class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-
     this._formElement = formElement;
   }
 
@@ -89,6 +88,13 @@ class FormValidator {
     });
 
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
   }
 }
 

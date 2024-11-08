@@ -102,20 +102,23 @@ previewImagePopup.setEventListeners();
 
 // Edit Avatar Popup //
 
-const avatarEditPopup = new PopupWithForm("#profile-avatar-modal", (url) => {
-  avatarEditPopup.renderLoading(true);
-
-  api
-    .updateAvatar(url)
-    .then((res) => {
-      userInfo.updateAvatar(res);
-      avatarEditPopup.close();
-    })
-    .catch((err) => console.log("Error updating avatar:", err))
-    .finally(() => {
-      avatarEditPopup.renderLoading(false);
-    });
-});
+const avatarEditPopup = new PopupWithForm(
+  "#profile-avatar-modal",
+  (avatarData) => {
+    avatarEditPopup.renderLoading(true);
+    api
+      .updateAvatar(avatarData.url)
+      .then((res) => {
+        userInfo.updateAvatar(res);
+        avatarEditPopup.close();
+        //avatarFormValidator.disableButton();
+      })
+      .catch(console.error)
+      .finally(() => {
+        avatarEditPopup.renderLoading(false);
+      });
+  }
+);
 avatarEditPopup.setEventListeners();
 
 const deleteConfirm = new PopupWithConfirm("#delete__modal", handleDelete);
@@ -218,7 +221,7 @@ addCardBtn.addEventListener("click", () => {
 
 // Avatar Edit Form //
 const avatarEditBtn = document.querySelector("#avatar-edit-button");
-const avatarForm = document.forms["modal__form_avatar"];
+const avatarForm = document.forms["edit-avatar-form"];
 
 const profileImage = document.querySelector(".profile__image");
 
@@ -264,3 +267,5 @@ const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
+const avatarFormValidator = new FormValidator(config, avatarForm);
+avatarFormValidator.enableValidation();

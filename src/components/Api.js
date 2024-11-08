@@ -32,6 +32,7 @@ export default class Api {
       }),
     }).then(this._handleRes);
   }
+
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -59,11 +60,11 @@ export default class Api {
       headers: this._headers,
     }).then(this._handleRes);
   }
-  updateAvatar(url) {
+  updateAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(url),
+      body: JSON.stringify({ avatar }),
     }).then(this._handleRes);
   }
 }

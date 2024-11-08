@@ -24,7 +24,7 @@
               alt="Avatar"
               class="profile__image"
             />
-            <div class="profile__image_edit-pencil"></div>
+            <button class="profile__image_edit-pencil"></button>
           </div>
           <div class="profile__info">
             <h1 class="profile__title">Chukwuka Arimah</h1>
@@ -152,21 +152,17 @@
       <div class="modal__container">
         <button class="modal__close" id="modal__close-button"></button>
         <p class="modal__heading">Change profile picture</p>
-        <form class="modal__form modal__popup__form">
+        <form class="modal__form modal__popup-form" id="edit-avatar-form">
           <input
             type="url"
             name="url"
             id="card__description-input"
             placeholder="Image URL"
-            class="modal__form-input modal__popup__input"
+            class="modal__input modal__popup__input"
             required
           />
           <span class="popup__error" id="card__description-input-error"></span>
-          <button
-            class="modal__button modal__popup__button modal__popup__button_disabled"
-            type="submit"
-            disabled
-          >
+          <button class="modal__button modal__popup__button" type="submit">
             Save
           </button>
         </form>
