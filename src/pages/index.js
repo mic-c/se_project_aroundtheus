@@ -220,8 +220,12 @@ addCardBtn.addEventListener("click", () => {
 });
 
 // Avatar Edit Form //
-const avatarEditBtn = document.querySelector("#avatar-edit-button");
+const avatarEditBtn = document.querySelector(".profile__image_edit-pencil");
 const avatarForm = document.forms["edit-avatar-form"];
+
+avatarEditBtn.addEventListener("click", () => {
+  avatarEditPopup.open();
+});
 
 const profileImage = document.querySelector(".profile__image");
 
@@ -250,7 +254,6 @@ api
 api
   .getInitialCards()
   .then((cardData) => {
-    console.log("Fetched cards:", cardData);
     cardData.forEach((cardItem) => {
       const cardElement = createCard(cardItem);
       cardSection.addItem(cardElement);

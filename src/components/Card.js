@@ -8,7 +8,7 @@ export default class Card {
   ) {
     this._name = data.name;
     this._link = data.link;
-    this.isLiked = data.isLiked;
+    this._isLiked = data.isLiked;
     this._id = data._id;
     this._handleCardImageClick = handleCardImageClick;
     this._handleCardDelete = handleCardDelete;
@@ -33,7 +33,7 @@ export default class Card {
   _setEventListeners() {
     this._element
       .querySelector(".card__like-button")
-      .addEventListener("click", () => this._handleLikeIcon());
+      .addEventListener("click", () => this._handleCardLike(this));
 
     this._element
       .querySelector(".card__trash-button")
@@ -59,6 +59,11 @@ export default class Card {
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
+    if (this._isLiked) {
+      this._element
+        .querySelector(".card__like-button")
+        .classList.add("card__like-button_active");
+    }
 
     this._setEventListeners();
     return this._element;
@@ -69,11 +74,11 @@ export default class Card {
     const cardImageElement = this._element.querySelector(".card__image");
     const cardTitleElement = this._element.querySelector(".card__title");
 
-    this._updateLikeStatus();
+    this.updateIsLiked();
   }
 
   //method to handle card like and unlike in DOM
-  _updateLikeStatus(likeCard) {
+  updateIsLiked(likeCard) {
     if (likeCard) {
       this._element
         .querySelector(".card__like-button")
