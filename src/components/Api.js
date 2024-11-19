@@ -55,6 +55,7 @@ export default class Api {
       headers: this._headers,
     }).then(this._handleRes);
   }
+
   disLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",

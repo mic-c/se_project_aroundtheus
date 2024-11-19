@@ -64,7 +64,7 @@ const editProfilePopup = new PopupWithForm(
     api
       .updateProfileInfo(profileData.title, profileData.description)
       .then((updatedUserInfo) => {
-        userInfo.setUserInfo(updatedUserInfo.name, updatedUserInfo.about);
+        userInfo.setUserInfo(updatedUserInfo);
         editProfilePopup.close();
       })
       .catch(console.error)
@@ -134,7 +134,7 @@ function handleImageClick(name, link) {
 function handleProfileEditSubmit(profileData) {
   const name = profileData.title;
   const description = profileData.description;
-  user.setUserInfo(name, description);
+  user.setUserInfo({ name: name, about: description });
   profileEditPopup.close();
 }
 
@@ -241,16 +241,7 @@ profileImage.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 
 // API Calls
-/*
-api
-  .getInitialCards()
-  .then((currentUser) => {
-    console.log("Current user ID:", currentUser._id);
-  })
-  .catch((err) => {
-    console.error("Failed to load user information:", err);
-  });
-*/
+
 api
   .getInitialCards()
   .then((cardData) => {
@@ -263,6 +254,13 @@ api
     console.error("Error fetching initial cards", err);
   });
 
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.updateAvatar(data);
+    userInfo.setUserInfo(data);
+  })
+  .catch(console.error);
 /* -------------------------------------------------------------------------- */
 /*                               Validation                                 */
 /* -------------------------------------------------------------------------- */

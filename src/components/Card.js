@@ -83,10 +83,12 @@ export default class Card {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");
+        this._isLiked = true
     } else {
       this._element
         .querySelector(".card__like-button")
         .classList.remove("card__like-button_active");
+        this._isLiked = false
     }
   }
 }
