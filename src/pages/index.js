@@ -87,7 +87,7 @@ const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
       cardSection.addItem(cardElement);
       newCardPopup.close();
       addCardForm.reset();
-      addCardFormValidator.enableValidation();
+      //addCardFormValidator.enableValidation();
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -110,8 +110,9 @@ const avatarEditPopup = new PopupWithForm(
       .updateAvatar(avatarData.url)
       .then((res) => {
         userInfo.updateAvatar(res);
+        avatarForm.reset();
         avatarEditPopup.close();
-        //avatarFormValidator.disableButton();
+        avatarFormValidator.disableButton();
       })
       .catch(console.error)
       .finally(() => {

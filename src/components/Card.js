@@ -6,6 +6,7 @@ export default class Card {
     handleCardLike,
     handleCardDelete
   ) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._isLiked = data.isLiked;
@@ -13,7 +14,6 @@ export default class Card {
     this._handleCardImageClick = handleCardImageClick;
     this._handleCardDelete = handleCardDelete;
     this._handleCardLike = handleCardLike;
-
     this._cardSelector = cardSelector;
   }
 
@@ -59,7 +59,8 @@ export default class Card {
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
-    if (this._isLiked) {
+
+    if (this._data.isLiked) {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");
@@ -83,12 +84,12 @@ export default class Card {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");
-        this._isLiked = true
+      this._isLiked = true;
     } else {
       this._element
         .querySelector(".card__like-button")
         .classList.remove("card__like-button_active");
-        this._isLiked = false
+      this._isLiked = false;
     }
   }
 }
