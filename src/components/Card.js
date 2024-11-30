@@ -54,7 +54,7 @@ export default class Card {
 
   getView() {
     this._element = this._getTemplate();
-    this._createCard();
+    //this._createCard();
 
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
@@ -68,14 +68,6 @@ export default class Card {
 
     this._setEventListeners();
     return this._element;
-  }
-
-  //method to create card
-  _createCard() {
-    const cardImageElement = this._element.querySelector(".card__image");
-    const cardTitleElement = this._element.querySelector(".card__title");
-
-    this.updateIsLiked();
   }
 
   //method to handle card like and unlike in DOM

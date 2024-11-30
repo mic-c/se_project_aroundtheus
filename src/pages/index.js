@@ -58,7 +58,7 @@ function renderCard(cardData) {
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   (profileData) => {
-    handleProfileEditSubmit;
+    //handleProfileEditSubmit;
     editProfilePopup.renderLoading(true);
 
     api
@@ -112,7 +112,7 @@ const avatarEditPopup = new PopupWithForm(
         userInfo.updateAvatar(res);
         avatarForm.reset();
         avatarEditPopup.close();
-        avatarFormValidator.disableButton();
+        //avatarFormValidator.disableButton();
       })
       .catch(console.error)
       .finally(() => {
