@@ -18,11 +18,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.svg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar" id="profile__avatar">
+            <img
+              src="<%=require('./images/Avatar.svg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button class="profile__image_edit-pencil"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Chukwuka Arimah</h1>
             <button
@@ -132,6 +135,40 @@
         <p class="modal__image_title"></p>
       </div>
     </div>
+
+    <!-- ------------------------- Delete Modal -------------------------- -->
+    <div class="modal" id="delete__modal">
+      <div class="modal__container">
+        <button class="modal__close" id="modal__close-button"></button>
+        <h3 class="modal__title">Are You Sure?</h3>
+        <button class="modal__button modal__popup__button" type="submit">
+          Yes
+        </button>
+      </div>
+    </div>
+
+    <!-- -------------------------- Avatar Modal  -------------------------- -->
+    <div class="modal" id="profile-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="modal__close-button"></button>
+        <h3 class="modal__title">Change profile picture</h3>
+        <form class="modal__form modal__popup-form" id="edit-avatar-form">
+          <input
+            type="url"
+            name="url"
+            id="card__description-input"
+            placeholder="Image URL"
+            class="modal__input modal__popup__input"
+            required
+          />
+          <span class="modal__error" id="card__description-input-error"></span>
+          <button class="modal__button modal__popup__button" type="submit">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
         <button
