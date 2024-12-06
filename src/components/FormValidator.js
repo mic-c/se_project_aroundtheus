@@ -54,7 +54,7 @@ class FormValidator {
     this._button.disabled = false;
   }
 
-  _disableSubmitButton() {
+  disableSubmitButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
@@ -84,7 +84,7 @@ class FormValidator {
       this._inputList.forEach((inputEl) => this._hideInputError(inputEl));
 
       this._formElement.reset();
-      this._disableSubmitButton();
+      this.disableSubmitButton();
     });
 
     this._setEventListeners();

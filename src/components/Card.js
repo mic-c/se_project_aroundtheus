@@ -54,8 +54,6 @@ export default class Card {
 
   getView() {
     this._element = this._getTemplate();
-    //this._createCard();
-
     this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;

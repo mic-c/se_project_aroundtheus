@@ -58,7 +58,6 @@ function renderCard(cardData) {
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   (profileData) => {
-    //handleProfileEditSubmit;
     editProfilePopup.renderLoading(true);
 
     api
@@ -83,11 +82,10 @@ const newCardPopup = new PopupWithForm("#add-card-modal", ({ title, url }) => {
   api
     .addCard({ name: title, link: url })
     .then((cardData) => {
-      const cardElement = createCard(cardData);
-      cardSection.addItem(cardElement);
+      renderCard(cardData);
       newCardPopup.close();
       addCardForm.reset();
-      //addCardFormValidator.enableValidation();
+      addCardFormValidator.disableSubmitButton();
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -112,7 +110,6 @@ const avatarEditPopup = new PopupWithForm(
         userInfo.updateAvatar(res);
         avatarForm.reset();
         avatarEditPopup.close();
-        //avatarFormValidator.disableButton();
       })
       .catch(console.error)
       .finally(() => {
@@ -147,10 +144,6 @@ function handleAddCardSubmit(newCardData, cardListElement) {
   newCardPopup.close();
 }
 
-function handleCardDeleteClick(id) {
-  deleteConfirm.open(id);
-}
-
 function createCard(cardData) {
   return new Card(
     cardData,
@@ -163,9 +156,7 @@ function createCard(cardData) {
 
 const cardSection = new Section(
   {
-    renderer: (item) => {
-      cardSection.addItem(makeCard(item));
-    },
+    renderer: renderCard,
   },
   ".cards__list"
 );
@@ -181,7 +172,8 @@ function handleDelete(card) {
         card.removeCard();
         deleteConfirm.close();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => deleteConfirm.renderLoading(false));
   });
 }
 
@@ -231,10 +223,6 @@ avatarEditBtn.addEventListener("click", () => {
 const profileImage = document.querySelector(".profile__image");
 
 profileImage.addEventListener("click", () => {
-  const cardData = userInfo.getUserInfo();
-
-  profileTitleInput.value = cardData.name;
-  profileDescriptionInput.value = cardData.about;
   avatarEditPopup.open();
 });
 /* -------------------------------------------------------------------------- */
@@ -246,10 +234,8 @@ profileImage.addEventListener("click", () => {
 api
   .getInitialCards()
   .then((cardData) => {
-    cardData.forEach((cardItem) => {
-      const cardElement = createCard(cardItem);
-      cardSection.addItem(cardElement);
-    });
+    cardSection.setItems(cardData);
+    cardSection.renderItems();
   })
   .catch((err) => {
     console.error("Error fetching initial cards", err);
